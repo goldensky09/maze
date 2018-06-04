@@ -1,0 +1,48 @@
+.container {
+    border: 1px solid blue;
+    display: flex;
+}
+.labels {
+    background-color: antiquewhite;
+    flex-basis: 30%;
+}
+.arc-container {
+    border: 1px solid red;
+    flex-basis: 320px;
+    height: 320px;
+    position: relative;
+    padding: 10px;
+}
+.desc {
+    flex-basis: 30%;
+}
+
+.arc {
+    border: 1em solid green;
+    border-bottom-color: transparent!important;
+    border-radius: 50%;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    bottom: -5px;
+    left: -5px;
+    transition: transform  ease 1s, border-color linear .5s;
+    box-shadow: 0px -3px 3px 1px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    cursor: pointer!important;
+}
+
+.arc-radio {
+    display: none;
+}
+.arc-radio:checked + .arc {
+    border-color: red!important;
+    border-bottom-color: transparent!important;
+    overflow: hidden;
+}
+.arc-selected {
+    transform: rotate(360deg);
+}
+.arc-selected > arc {
+    transform: rotate(-360deg)
+}
