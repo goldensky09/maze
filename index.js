@@ -14,8 +14,8 @@
             arcDiff = apDifference(arcStartThickness, numArcs, arcArea);
         // console.log(arcStartThickness, numArcs, arcArea);
         $.each($(".arc"), function (i, el) {
-            // var arcAngle = i ? (i % 2 ? 180 : i * 22.5 + 180) : (Math.floor(Math.random() * 16) + 1) * 22.5;
-            var arcAngle = i ? (i % 2 ? 180 : i * 22.5 + 180) : 0;
+            var arcAngle = i ? (i % 2 ? 180 : i * 22.5 + 180) : (Math.floor(Math.random() * 16) + 1) * 22.5;
+            //var arcAngle = i ? (i % 2 ? 180 : i * 22.5 + 180) : 0;
             // console.log(arcAngle, arr);
             $(el).css("transform", "rotate(" + arcAngle + "deg)").data({
                 "rotation": arcAngle,
