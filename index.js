@@ -9,30 +9,36 @@
         var contWidth = $(".arc-container").width(),
             numArcs = $(".arc").length,
             arcArea = (contWidth - 2 * numArcs) * (numArcs <= 10 ? numArcs * 10 : 65) / 100, //% of area to be filled with arcs
-            //arcArea = (contWidth-2*numArcs),
+            arcStartAngle = (Math.floor(Math.random() * 4) + 1) * 22.5,//generate a randome ange between 0 to 90 degree
             arcStartThickness = 30 - numArcs * 2,
-            arcDiff = apDifference(arcStartThickness, numArcs, arcArea);
+            arcDiff = apDifference(arcStartThickness, numArcs, arcArea),
+            tmpWidth = contWidth;
         // console.log(arcStartThickness, numArcs, arcArea);
         $.each($(".arc"), function (i, el) {
-            var arcAngle = i ? (i % 2 ? 180 : i * 22.5 + 180) : (Math.floor(Math.random() * 16) + 1) * 22.5;
-            //var arcAngle = i ? (i % 2 ? 180 : i * 22.5 + 180) : 0;
-            // console.log(arcAngle, arr);
-            $(el).css("transform", "rotate(" + arcAngle + "deg)").data({
+            var arcAngle = i ? (i % 2 ? arcStartAngle + (i - 1) * 22.5 + 180 : arcStartAngle + i * 22.5) : arcStartAngle,
+                arcThickness = ((numArcs - i - 1) * arcDiff) / 2 + arcStartThickness;
+
+
+            console.log(i, arcAngle);
+            $(el).css({
+                "transform": "translate(-50%, -50%) rotate(" + arcAngle + "deg)",
+                "border-width": arcThickness,
+                "border-color": changeColor("#333333", i * 10),
+                "width": tmpWidth,
+                "height": tmpWidth
+            }).data({
                 "rotation": arcAngle,
                 index: i
             });
-            $(el).css("border-width", ((numArcs - i - 1) * arcDiff) / 2 + arcStartThickness);
-            $(el).css("border-color", changeColor("#333333", i * 10));
+            tmpWidth -= arcThickness + 12;
         })
 
         $(".arc, .arc-trigger").on("mouseenter", function (e) {
             e.stopPropagation();
-            // console.log("mouse in", this);
             var $el = $(this).is(".arc-trigger") ? $("#" + $(this).attr("for")).next(".arc") : $(this);
             $el.prev(".arc-radio").prop("checked", true);
         }).on("mouseleave", function (e) {
             e.stopPropagation();
-            // console.log("mouse out", this);
             var $el = $(this).is(".arc-trigger") ? $("#" + $(this).attr("for")).next(".arc") : $(this);
             $el.parent().closest(".arc").trigger("mouseenter");
             $el.prev(".arc-radio").prop("checked", false);
@@ -42,14 +48,14 @@
             console.log("click", this);
             if (!$(e.target).is(".arc-radio")) {
                 var $el = $(this).is(".arc-trigger") ? $("#" + $(this).attr("for")).next(".arc") : $(this);
-                var $elChild = $el.find(">.arc");
-                $(".arc").removeClass("arc-selected");
-                var prevRotation = $el.css("transform");
-                $el.addClass("arc-selected").css("transform", "rotate("+ (parseInt($el.data("rotation"))+ 360) +"deg)");
-                // $el.find(".arc").css("transform", "rotate(-" + $el.data("rotation") + "deg)");
-                var idx = $elChild.data("index"),
-                arcRevAngle = idx ? (idx % 2 ? 180 : $elChild.data("rotation") + idx * 22.5) : 0;
-                $elChild.css("transform", "rotate(-"+arcRevAngle+"deg)");
+                var $prevEl = $(".arc-selected").removeClass("arc-selected");
+                $prevEl.css({
+                    "transform": "translate(-50%, -50%) rotate(" + (parseInt($prevEl.data("rotation"))) + "deg)"
+                })
+
+                $el.addClass("arc-selected").css({
+                    "transform": "translate(-50%, -50%) rotate(" + (parseInt($el.data("rotation")) + 360) + "deg)"
+                });
             }
         });
 
@@ -64,7 +70,7 @@
             //console.log(d);
             return d;
         }
-
+        // alg to calculate rotatin of an element
         function matrixToAngle(tr) {
             var values = tr.split('(')[1].split(')')[0].split(',');
             var a = values[0];
@@ -83,7 +89,7 @@
             var angle = Math.round(Math.atan2(b, a) * (180 / Math.PI));
             return angle;
         }
-
+        // alg to darken/lighten a color in a certain ratio
         function changeColor(col, amt) {
             var usePound = false;
 

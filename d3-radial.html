@@ -65,10 +65,10 @@ let tooltip = d3.select('body').append('div')
   .attr('class', 'tooltip');
 
 const PI = Math.PI,
-  arcMinRadius = 10,
-  arcPadding = 10,
+  arcMinRadius = 75,
+  arcPadding = -5,
   labelPadding = -5,
-  numTicks = 10;
+  numTicks = 0;
 
 
 d3.csv('energy.csv', (error, data) => {
@@ -89,35 +89,35 @@ d3.csv('energy.csv', (error, data) => {
     .startAngle(0)
     .endAngle((d, i) => scale(d))
 
-  let radialAxis = svg.append('g')
-    .attr('class', 'r axis')
-    .selectAll('g')
-      .data(data)
-      .enter().append('g');
+//   let radialAxis = svg.append('g')
+//     .attr('class', 'r axis')
+//     .selectAll('g')
+//       .data(data)
+//       .enter().append('g');
 
-  radialAxis.append('circle')
-    .attr('r', (d, i) => getOuterRadius(i) + arcPadding);
+//   radialAxis.append('circle')
+//     .attr('r', (d, i) => getOuterRadius(i) + arcPadding);
 
-  radialAxis.append('text')
-    .attr('x', labelPadding)
-    .attr('y', (d, i) => -getOuterRadius(i) + arcPadding)
-    .text(d => d.name);
+//   radialAxis.append('text')
+    // .attr('x', labelPadding)
+    // .attr('y', (d, i) => -getOuterRadius(i) + arcPadding)
+    // .text(d => d.name);
 
-  let axialAxis = svg.append('g')
-    .attr('class', 'a axis')
-    .selectAll('g')
-      .data(ticks)
-      .enter().append('g')
-        .attr('transform', d => 'rotate(' + (rad2deg(scale(d)) - 90) + ')');
+//   let axialAxis = svg.append('g')
+//     .attr('class', 'a axis')
+//     .selectAll('g')
+//       .data(ticks)
+//       .enter().append('g')
+//         .attr('transform', d => 'rotate(' + (rad2deg(scale(d)) - 90) + ')');
 
-  axialAxis.append('line')
-    .attr('x2', chartRadius);
+//   axialAxis.append('line')
+//     .attr('x2', chartRadius);
 
-  axialAxis.append('text')
-    .attr('x', chartRadius + 10)
-    .style('text-anchor', d => (scale(d) >= PI && scale(d) < 2 * PI ? 'end' : null))
-    .attr('transform', d => 'rotate(' + (90 - rad2deg(scale(d))) + ',' + (chartRadius + 10) + ',0)')
-    .text(d => d);
+//   axialAxis.append('text')
+//     .attr('x', chartRadius + 10)
+//     .style('text-anchor', d => (scale(d) >= PI && scale(d) < 2 * PI ? 'end' : null))
+//     .attr('transform', d => 'rotate(' + (90 - rad2deg(scale(d))) + ',' + (chartRadius + 10) + ',0)')
+//     .text(d => d);
 
   //data arcs
   let arcs = svg.append('g')
@@ -133,9 +133,14 @@ d3.csv('energy.csv', (error, data) => {
     .duration(1000)
     .attrTween('d', arcTween);
 
-  arcs.on('mousemove', showTooltip)
-  arcs.on('mouseout', hideTooltip)
+//   arcs.on('mousemove', showTooltip)
+//   arcs.on('mouseout', hideTooltip)
+  arcs.on('click', arcRotate)
 
+function arcRotate(d, i, a) {
+    console.log(arguments);
+    d3.select(a[i]).attr("transform" , 'rotate('+rad2deg(90) + ')');
+}
 
   function arcTween(d, i) {
     let interpolate = d3.interpolate(0, d.value);

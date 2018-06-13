@@ -22,14 +22,17 @@
     border-bottom-color: transparent!important;
     border-radius: 50%;
     position: absolute;
-    top: -5px;
+    /* top: -5px;
     right: -5px;
     bottom: -5px;
-    left: -5px;
+    left: -5px; */
     transition: transform  ease 1s, border-color linear .5s;
     box-shadow: 0px -3px 3px 1px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    cursor: pointer!important;
+    /* z-index: -0; */
+    cursor: pointer;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(90deg);
+    top: 50%;
 }
 
 .arc-radio {
@@ -41,8 +44,23 @@
     overflow: hidden;
 }
 .arc-selected {
-    transform: rotate(360deg);
+    border-color: red!important;
+    border-bottom-color: transparent!important;
+    overflow: hidden;
 }
-.arc-selected > arc {
-    transform: rotate(-360deg)
+
+.arc-labels ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.arc-trigger {
+    padding: 15px;
+    display: block;
+    cursor: pointer;
+}
+
+.arc-trigger:hover {
+    background-color: #efefef;
 }
