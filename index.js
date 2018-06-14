@@ -12,7 +12,7 @@
             arcStartAngle = (Math.floor(Math.random() * 4) + 1) * 22.5,//generate a randome ange between 0 to 90 degree
             arcStartThickness = 30 - numArcs * 2,
             arcDiff = apDifference(arcStartThickness, numArcs, arcArea),
-            tmpWidth = contWidth;
+            tmpWidth = contWidth-50;
         // console.log(arcStartThickness, numArcs, arcArea);
         $.each($(".arc"), function (i, el) {
             var arcAngle = i ? (i % 2 ? arcStartAngle + (i - 1) * 22.5 + 180 : arcStartAngle + i * 22.5) : arcStartAngle,

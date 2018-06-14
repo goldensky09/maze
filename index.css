@@ -1,19 +1,18 @@
 .container {
-    border: 1px solid blue;
     display: flex;
 }
-.labels {
-    background-color: antiquewhite;
+.arc-labels {
     flex-basis: 30%;
+    text-align: right;
 }
 .arc-container {
-    border: 1px solid red;
     flex-basis: 320px;
     height: 320px;
     position: relative;
     padding: 10px;
+    border: 1px solid #efefef;
 }
-.desc {
+.arc-desc {
     flex-basis: 30%;
 }
 
@@ -39,12 +38,12 @@
     display: none;
 }
 .arc-radio:checked + .arc {
-    border-color: red!important;
+    border-color: teal!important;
     border-bottom-color: transparent!important;
     overflow: hidden;
 }
 .arc-selected {
-    border-color: red!important;
+    border-color: teal!important;
     border-bottom-color: transparent!important;
     overflow: hidden;
 }
@@ -56,9 +55,25 @@
 }
 
 .arc-trigger {
-    padding: 15px;
+    padding: 5px 20px 5px 0;
     display: block;
     cursor: pointer;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+    position: relative;
+    text-transform: uppercase;
+}
+
+.arc-trigger:after {
+    content: "";
+    width: 100%;
+    height: 0;
+    border: 1px solid red;
+    display: block;
+    position: absolute;
+    transform: translate(90%, -50%);
+    z-index: 1;
+    top: 50%;
 }
 
 .arc-trigger:hover {
