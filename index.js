@@ -15,22 +15,25 @@
             tmpWidth = contWidth-50;
         // console.log(arcStartThickness, numArcs, arcArea);
         $.each($(".arc"), function (i, el) {
-            var arcAngle = i ? (i % 2 ? arcStartAngle + (i - 1) * 22.5 + 180 : arcStartAngle + i * 22.5) : arcStartAngle,
+            setTimeout(function(){
+                var arcAngle = i ? (i % 2 ? arcStartAngle + (i - 1) * 22.5 + 180 : arcStartAngle + i * 22.5) : arcStartAngle,
                 arcThickness = ((numArcs - i - 1) * arcDiff) / 2 + arcStartThickness;
-
-
-            console.log(i, arcAngle);
-            $(el).css({
-                "transform": "translate(-50%, -50%) rotate(" + arcAngle + "deg)",
-                "border-width": arcThickness,
-                "border-color": changeColor("#333333", i * 10),
-                "width": tmpWidth,
-                "height": tmpWidth
-            }).data({
-                "rotation": arcAngle,
-                index: i
-            });
-            tmpWidth -= arcThickness + 12;
+                $(el).css({
+                    "transform": "translate(-50%, -50%) rotate(" + arcAngle + "deg)",
+                    "border-width": arcThickness,
+                    "border-color": changeColor("#33556D", i * 10),
+                    "width": tmpWidth,
+                    "height": tmpWidth,
+                    "visibility": "visible"
+                }).data({
+                    "rotation": arcAngle,
+                    index: i
+                });
+                $(".arc-trigger-holder").eq(i).slideDown().css({
+                    "display": "flex"
+                });
+                tmpWidth -= arcThickness + 12;
+            }, i*100);
         })
 
         $(".arc, .arc-trigger").on("mouseenter", function (e) {
@@ -43,19 +46,29 @@
             $el.parent().closest(".arc").trigger("mouseenter");
             $el.prev(".arc-radio").prop("checked", false);
 
-        }).off("click").on("click", function (e) {
+        }).filter(".arc-trigger").off("click").on("click", function (e) {
             e.stopPropagation();
             console.log("click", this);
             if (!$(e.target).is(".arc-radio")) {
                 var $el = $(this).is(".arc-trigger") ? $("#" + $(this).attr("for")).next(".arc") : $(this);
                 var $prevEl = $(".arc-selected").removeClass("arc-selected");
-                $prevEl.css({
-                    "transform": "translate(-50%, -50%) rotate(" + (parseInt($prevEl.data("rotation"))) + "deg)"
-                })
+                // $prevEl.css({
+                //     "transform": "translate(-50%, -50%) rotate(" + (parseInt($prevEl.data("rotation"))) + "deg)"
+                // })
+
+                $(".arc-desc .desc").removeClass("open").slideUp();
+
+                $("."+$(e.target).prop("for")).slideDown(500, function(e){
+                    $(this).addClass("open")
+                });
+
+                $(".arc-trigger-holder").removeClass("disabled");
+
+                $(e.target).closest(".arc-trigger-holder").addClass("disabled");
 
                 $el.addClass("arc-selected").css({
                     "transform": "translate(-50%, -50%) rotate(" + (parseInt($el.data("rotation")) + 360) + "deg)"
-                });
+                }).data("rotation", (parseInt($el.data("rotation")) + 360));
             }
         });
 
