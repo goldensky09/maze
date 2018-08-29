@@ -1,0 +1,5 @@
+<inputExtraCssClass
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="granite/ui/components/foundation/form/textfield"
+    fieldLabel="Input CSS class"
+    name="./inputExtraCssClass"/>

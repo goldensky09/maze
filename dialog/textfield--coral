@@ -1,0 +1,6 @@
+<carModel
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+    fieldLabel="Model"
+    value="carModel"
+    name="./carModel"/>

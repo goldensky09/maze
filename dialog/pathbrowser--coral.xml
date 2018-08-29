@@ -1,0 +1,7 @@
+<buttonPath
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+    rootPath="/content/"
+    emptyText="Path to target page"
+    fieldLabel="Button Link"
+    name="./buttonPath"/>

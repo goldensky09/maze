@@ -1,0 +1,36 @@
+<!-- 
+Usage:
+<sly data-sly-list="${resource.children}">
+    <sly data-sly-list="${item.children}">
+        ${item.linkText}
+        ${item.linkUrl}
+    </sly>
+</sly>
+-->
+
+<!-- 
+How to define min/max item limit: http://experience-aem.blogspot.com/2018/01/aem-6310-touch-ui-add-min-max-limit-to-coral-3-multifield.html
+-->
+
+<nav
+    sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+    fieldDescription="Click '+' to add a new link"
+    fieldLabel="Links"
+    jcr:primaryType="nt:unstructured"
+    composite="{Boolean}true">
+    <field sling:resourceType="granite/ui/components/coral/foundation/container"
+            jcr:primaryType="nt:unstructured" name="./items">
+        <items jcr:primaryType="nt:unstructured">
+            <linkText
+                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                fieldLabel="Link Text"
+                jcr:primaryType="nt:unstructured"
+                name="./linkText" />
+            <linkurl
+                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                fieldLabel="Link Url"
+                jcr:primaryType="nt:unstructured"
+                name="./linkUrl" />
+        </items>
+    </field>
+</nav>

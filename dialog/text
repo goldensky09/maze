@@ -1,0 +1,12 @@
+<intro
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="wcm/foundation/components/text"
+    text="Please note that this component is not to be used to include JavaScript or CSS."/>
+    
+    
+ OR
+ 
+ <info
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="granite/ui/components/foundation/text"
+    text="Please note that this component is not to be used to include JavaScript or CSS."/>

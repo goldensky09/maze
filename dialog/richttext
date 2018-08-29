@@ -1,0 +1,24 @@
+http://stackoverflow.com/questions/34309445/aem-6-1-enable-rich-text-editor-rte-plugins-on-touch-ui
+
+-------
+
+<longDescriptionText
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+    fieldDescription="Sets the description that appears on the profiled person's page."
+    fieldLabel="Long Description*"
+    required="true"
+    useFixedInlineToolbar="{Boolean}true"
+    name="./longDescriptionText">
+    <rtePlugins jcr:primaryType="nt:unstructured">
+        <format
+            jcr:primaryType="nt:unstructured"
+            features="[bold,italic]"/>
+        <justify
+            jcr:primaryType="nt:unstructured"
+            features="[]"/>
+        <lists
+            jcr:primaryType="nt:unstructured"
+            features="[]"/>
+    </rtePlugins>
+</longDescriptionText>

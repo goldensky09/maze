@@ -1,0 +1,4 @@
+<inputgroup
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="granite/ui/components/coral/foundation/text"
+    text="Enable user sharing for"/>

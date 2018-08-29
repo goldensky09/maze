@@ -1,0 +1,6 @@
+<columnLast
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="granite/ui/components/foundation/form/checkbox"
+    text="Last column in grid?"
+    value="true"
+    name="./columnLast"/>

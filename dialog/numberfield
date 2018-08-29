@@ -1,0 +1,9 @@
+<columnWidth
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="granite/ui/components/foundation/form/numberfield"
+    fieldLabel="Field width in grid"
+    defaultValue="4"
+    min="1"
+    max="12"
+    step="1"
+    name="./columnWidth"/>

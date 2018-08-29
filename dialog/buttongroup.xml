@@ -1,0 +1,30 @@
+<alignment jcr:primaryType="nt:unstructured"
+    name="./alignChildren"
+    fieldLabel="Alignment of components"
+    required="{Boolean}true"
+    selectionMode="single"
+    sling:resourceType="granite/ui/components/coral/foundation/form/buttongroup">
+
+    <items jcr:primaryType="nt:unstructured">
+        <default jcr:primaryType="nt:unstructured"
+            name="./default"
+            text="Default"
+            value="false"
+            cq-msm-lockable="default"/>
+        <left jcr:primaryType="nt:unstructured"
+            name="./left"
+            text="Left"
+            value="left"
+            cq-msm-lockable="left"/>
+        <center jcr:primaryType="nt:unstructured"
+            name="./center"
+            text="Center"
+            value="center"
+            cq-msm-lockable="center"/>
+        <right jcr:primaryType="nt:unstructured"
+            name="./right"
+            text="Right"
+            value="right"
+            cq-msm-lockable="right"/>
+    </items>
+</alignment>

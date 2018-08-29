@@ -1,0 +1,8 @@
+<hideMismatches
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+        text="Hide Mismatches"
+        fieldDescription="Check this box to hide dropdown options if they don't match with the user's input"
+        name="./hideMismatches"
+        value="{Boolean}true"
+        uncheckedValue="{Boolean}false"/>

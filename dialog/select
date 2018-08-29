@@ -1,0 +1,14 @@
+<linkColor
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="granite/ui/components/foundation/form/select"
+    fieldLabel="Link Color"
+    name="./linkColor">
+  <items jcr:primaryType="nt:unstructured">
+    <primary jcr:primaryType="nt:unstructured"
+      text="Primary"
+      value="primary"/>
+    <secondary jcr:primaryType="nt:unstructured"
+      text="Secondary"
+      value="secondary"/>
+  </items>
+</linkColor>
