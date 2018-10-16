@@ -1,0 +1,22 @@
+{
+  "name": "maze",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/goldensky09/maze.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/goldensky09/maze/issues"
+  },
+  "homepage": "https://github.com/goldensky09/maze#readme",
+  "dependencies": {
+    "google-closure-compiler": "^20180805.0.0"
+  }
+}
